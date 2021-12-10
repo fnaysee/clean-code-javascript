@@ -20,11 +20,11 @@
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
 
-Software engineering principles, from Robert C. Martin's book
 C. Martin اصول طراحی نرم افزار، برگرفته از کتاب 
 [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-adapted for JavaScript. This is not a style guide. It's a guide to producing
-[readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in JavaScript.
+ویرایش شده برای جاوااسکریپت. این راهنما برای استایل دهی به کد نیست، برای نوشتن کدی .
+
+[خوانا، قابل استفاده مجدد و توسعه پذیر](https://github.com/ryanmcdermott/3rs-of-software-architecture) در زبان جاوااسکریپت می باشد.
 
 Not every principle herein has to be strictly followed, and even fewer will be
 universally agreed upon. These are guidelines and nothing more, but they are
