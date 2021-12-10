@@ -29,32 +29,23 @@ you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
 نیازی نیست به طور حتمی از تمامی قواعد مطرح شده در این راهنما پیروری نمایید، و برخی از قواعد مطرح شده مورد تایید همه نیست.
 اصول مطرح شده در اینجا صرفا جهت ترسیم خط مشی در کدنویسی می باشند، نه چیزی بیشتر از آن، اما اصول مطرح شده، حاصل سالها تجربه نویسندگان _Clean Code_ می باشد که برایتان گردآوری شده است. 
 
-سابقه ما، در مهندسی نرم افزار کمی بیش از 50 سال می باشد،و همچنان در حال یادگیری می باشیم.
+سابقه ما، در مهندسی نرم افزار کمی بیش از 50 سال می باشد، و همچنان در حال یادگیری می باشیم. شاید زمانی که معماری نرم افزار به قدمت خود معماری شود، ما نیز ملزم به رعایت قواعدی سختگیرانه تر باشیم. اما در حال حاضر قواعد زیر به شما یا تیمتان کمک می کند که اطمینان داشته باشید، کدی که تولید می نمایید ، از کیفیت لازم برخوردار است.
 
-Our craft of software engineering is just a bit over 50 years old, and we are
-still learning a lot. When software architecture is as old as architecture
-itself, maybe then we will have harder rules to follow. For now, let these
-guidelines serve as a touchstone by which to assess the quality of the
-JavaScript code that you and your team produce.
+یک مورد دیگر: دانستن این قواعد شما فورا شما را به توسعه دهنده بهتری تبدیل نمی کند، و همچنین بدین معنی نیست که اگر سالهاست از این قواعد پیروری می کنید، دیگر دچار اشتباه نمی شوید. هر قطعه کدی که می نویسید، یک پیش نویس از چیزی است که قصد دارید به آن برسید، درست همانند خاک رس مرطوب، که به آن حالتی داده می شود، تا به فرم نهایی خود درآید. در نهایت ما با بازخوانی کدهایمان با همکارانمان، آنها را بهبود می دهیم. به خاطز وجود ایراد در رونوشت های اولیه تان که نیاز به بهبود دارند، خودتان را گاز نگیرید، در عوض کدتان را گاز بگیرید!
 
-One more thing: knowing these won't immediately make you a better software
-developer, and working with them for many years doesn't mean you won't make
-mistakes. Every piece of code starts as a first draft, like wet clay getting
-shaped into its final form. Finally, we chisel away the imperfections when
-we review it with our peers. Don't beat yourself up for first drafts that need
-improvement. Beat up the code instead!
 
-## **Variables**
+## **متغییرها**
 
-### Use meaningful and pronounceable variable names
+### از اسامی خوانا و بامعنی استفاده کنید
 
-**Bad:**
+
+**بد:**
 
 ```javascript
 const yyyymmdstr = moment().format("YYYY/MM/DD");
 ```
 
-**Good:**
+**خوب:**
 
 ```javascript
 const currentDate = moment().format("YYYY/MM/DD");
