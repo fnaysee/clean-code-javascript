@@ -24,14 +24,15 @@ C. Martin اصول طراحی نرم افزار، برگرفته از کتاب
 
 
 [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
-ویرایش شده برای جاوااسکریپت. این راهنما برای استایل دهی به کد نیست، برای نوشتن کدی .
 
+ویرایش شده برای جاوااسکریپت.
+
+این راهنما برای استایل دهی به کد نیست، برای نوشتن کدی .
 
 [خوانا، قابل استفاده مجدد و توسعه پذیر](https://github.com/ryanmcdermott/3rs-of-software-architecture) در زبان جاوااسکریپت می باشد.
 
-Not every principle herein has to be strictly followed, and even fewer will be
-universally agreed upon. These are guidelines and nothing more, but they are
-ones codified over many years of collective experience by the authors of
+نیازی نیست به طور حتمی از تمامی قواعد مطرح شده در این راهنما پیروری نمایید، و برخی از قواعد مطرح شده مورد تایید همه نیست.
+اصول مطرح شده در اینجا صرفا جهت ترسیم خط مشی در کدنویسی می باشند، نه چیزی بیشتر از آن، اما اصول مطرح شده توسط افرادای با نویسندگان با تجربه آن گردآوری شده است. 
 _Clean Code_.
 
 Our craft of software engineering is just a bit over 50 years old, and we are
