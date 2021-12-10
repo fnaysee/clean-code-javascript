@@ -53,9 +53,9 @@ const currentDate = moment().format("YYYY/MM/DD");
 
 **[⬆ back to top](#table-of-contents)**
 
-### Use the same vocabulary for the same type of variable
+### از واژگان مشابه برای متغییرهای همنوع استفاده نمایید
 
-**Bad:**
+**بد:**
 
 ```javascript
 getUserInfo();
@@ -63,7 +63,7 @@ getClientData();
 getCustomerRecord();
 ```
 
-**Good:**
+**خوب:**
 
 ```javascript
 getUser();
@@ -71,8 +71,9 @@ getUser();
 
 **[⬆ back to top](#table-of-contents)**
 
-### Use searchable names
+### از اسمامی قابل جستجو استفاده نمایید
 
+ما بیشتر از اینکه کد بنویسیم، کد میخوانیم. بسیار مهم است که کدی که می نویسیم قابل خواندن و جستجو باشد. با عدم استفاده از اسامی با معنی برای متغییرهایمان، 
 We will read more code than we will ever write. It's important that the code we
 do write is readable and searchable. By _not_ naming variables that end up
 being meaningful for understanding our program, we hurt our readers.
@@ -81,7 +82,7 @@ Make your names searchable. Tools like
 [ESLint](https://github.com/eslint/eslint/blob/660e0918933e6e7fede26bc675a0763a6b357c94/docs/rules/no-magic-numbers.md)
 can help identify unnamed constants.
 
-**Bad:**
+**بد:**
 
 ```javascript
 // What the heck is 86400000 for?
@@ -101,7 +102,7 @@ setTimeout(blastOff, MILLISECONDS_PER_DAY);
 
 ### Use explanatory variables
 
-**Bad:**
+**بد:**
 
 ```javascript
 const address = "One Infinite Loop, Cupertino 95014";
@@ -127,7 +128,7 @@ saveCityZipCode(city, zipCode);
 
 Explicit is better than implicit.
 
-**Bad:**
+**بد:**
 
 ```javascript
 const locations = ["Austin", "New York", "San Francisco"];
@@ -163,7 +164,7 @@ locations.forEach(location => {
 If your class/object name tells you something, don't repeat that in your
 variable name.
 
-**Bad:**
+**بد:**
 
 ```javascript
 const Car = {
@@ -200,7 +201,7 @@ use them, your function will only provide default values for `undefined`
 arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
 `NaN`, will not be replaced by a default value.
 
-**Bad:**
+**بد:**
 
 ```javascript
 function createMicrobrewery(name) {
@@ -251,7 +252,7 @@ destructuring syntax. This has a few advantages:
 4. Linters can warn you about unused properties, which would be impossible
    without destructuring.
 
-**Bad:**
+**بد:**
 
 ```javascript
 function createMenu(title, body, buttonText, cancellable) {
@@ -287,7 +288,7 @@ When you can isolate a function to just one action, it can be refactored
 easily and your code will read much cleaner. If you take nothing else away from
 this guide other than this, you'll be ahead of many developers.
 
-**Bad:**
+**بد:**
 
 ```javascript
 function emailClients(clients) {
@@ -317,7 +318,7 @@ function isActiveClient(client) {
 
 ### Function names should say what they do
 
-**Bad:**
+**بد:**
 
 ```javascript
 function addToDate(date, month) {
@@ -349,7 +350,7 @@ When you have more than one level of abstraction your function is usually
 doing too much. Splitting up functions leads to reusability and easier
 testing.
 
-**Bad:**
+**بد:**
 
 ```javascript
 function parseBetterJSAlternative(code) {
@@ -438,7 +439,7 @@ worse than duplicate code, so be careful! Having said this, if you can make
 a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
 updating multiple places anytime you want to change one thing.
 
-**Bad:**
+**بد:**
 
 ```javascript
 function showDeveloperList(developers) {
@@ -503,7 +504,7 @@ function showEmployeeList(employees) {
 
 ### Set default objects with Object.assign
 
-**Bad:**
+**بد:**
 
 ```javascript
 const menuConfig = {
@@ -558,7 +559,7 @@ createMenu(menuConfig);
 
 Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
 
-**Bad:**
+**بد:**
 
 ```javascript
 function createFile(name, temp) {
@@ -601,7 +602,7 @@ without any structure, using mutable data types that can be written to by anythi
 and not centralizing where your side effects occur. If you can do this, you will
 be happier than the vast majority of other programmers.
 
-**Bad:**
+**بد:**
 
 ```javascript
 // Global variable referenced by following function.
@@ -671,7 +672,7 @@ Two caveats to mention to this approach:
    this kind of programming approach to be fast and not as memory intensive as
    it would be for you to manually clone objects and arrays.
 
-**Bad:**
+**بد:**
 
 ```javascript
 const addItemToCart = (cart, item) => {
@@ -701,7 +702,7 @@ to do the same thing. What if that other library was just using `diff` to find
 the difference between the first and last elements of an array? This is why it
 would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
 
-**Bad:**
+**بد:**
 
 ```javascript
 Array.prototype.diff = function diff(comparisonArray) {
@@ -729,7 +730,7 @@ JavaScript isn't a functional language in the way that Haskell is, but it has
 a functional flavor to it. Functional languages can be cleaner and easier to test.
 Favor this style of programming when you can.
 
-**Bad:**
+**بد:**
 
 ```javascript
 const programmerOutput = [
@@ -790,7 +791,7 @@ const totalOutput = programmerOutput.reduce(
 
 ### Encapsulate conditionals
 
-**Bad:**
+**بد:**
 
 ```javascript
 if (fsm.state === "fetching" && isEmpty(listNode)) {
@@ -814,7 +815,7 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 
 ### Avoid negative conditionals
 
-**Bad:**
+**بد:**
 
 ```javascript
 function isDOMNodeNotPresent(node) {
@@ -851,7 +852,7 @@ one thing. When you have classes and functions that have `if` statements, you
 are telling your user that your function does more than one thing. Remember,
 just do one thing.
 
-**Bad:**
+**بد:**
 
 ```javascript
 class Airplane {
@@ -907,7 +908,7 @@ Sometimes you are bitten by this freedom and it becomes tempting to do
 type-checking in your functions. There are many ways to avoid having to do this.
 The first thing to consider is consistent APIs.
 
-**Bad:**
+**بد:**
 
 ```javascript
 function travelToTexas(vehicle) {
@@ -941,7 +942,7 @@ doesn't make up for the lost readability. Keep your JavaScript clean, write
 good tests, and have good code reviews. Otherwise, do all of that but with
 TypeScript (which, like I said, is a great alternative!).
 
-**Bad:**
+**بد:**
 
 ```javascript
 function combine(val1, val2) {
@@ -974,7 +975,7 @@ resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
 for seeing where optimization is lacking. Target those in the meantime, until
 they are fixed if they can be.
 
-**Bad:**
+**بد:**
 
 ```javascript
 // On old browsers, each iteration with uncached `list.length` would be costly
@@ -1000,7 +1001,7 @@ Dead code is just as bad as duplicate code. There's no reason to keep it in
 your codebase. If it's not being called, get rid of it! It will still be safe
 in your version history if you still need it.
 
-**Bad:**
+**بد:**
 
 ```javascript
 function oldRequestModule(url) {
@@ -1044,7 +1045,7 @@ unorganized list of reasons why:
 - You can lazy load your object's properties, let's say getting it from a
   server.
 
-**Bad:**
+**بد:**
 
 ```javascript
 function makeBankAccount() {
@@ -1095,7 +1096,7 @@ account.setBalance(100);
 
 This can be accomplished through closures (for ES5 and below).
 
-**Bad:**
+**بد:**
 
 ```javascript
 const Employee = function(name) {
@@ -1140,7 +1141,7 @@ definitions for classical ES5 classes. If you need inheritance (and be aware
 that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
 classes until you find yourself needing larger and more complex objects.
 
-**Bad:**
+**بد:**
 
 ```javascript
 const Animal = function(age) {
@@ -1226,7 +1227,7 @@ For that reason, I say, use method chaining and take a look at how clean your co
 will be. In your class functions, simply return `this` at the end of every function,
 and you can chain further class methods onto it.
 
-**Bad:**
+**بد:**
 
 ```javascript
 class Car {
@@ -1317,7 +1318,7 @@ makes more sense than composition:
 3. You want to make global changes to derived classes by changing a base class.
    (Change the caloric expenditure of all animals when they move).
 
-**Bad:**
+**بد:**
 
 ```javascript
 class Employee {
@@ -1381,7 +1382,7 @@ It's important because if too much functionality is in one class and you modify
 a piece of it, it can be difficult to understand how that will affect other
 dependent modules in your codebase.
 
-**Bad:**
+**بد:**
 
 ```javascript
 class UserSettings {
@@ -1437,7 +1438,7 @@ etc.) should be open for extension, but closed for modification." What does that
 mean though? This principle basically states that you should allow users to
 add new functionalities without changing existing code.
 
-**Bad:**
+**بد:**
 
 ```javascript
 class AjaxAdapter extends Adapter {
@@ -1536,7 +1537,7 @@ classic Square-Rectangle example. Mathematically, a square is a rectangle, but
 if you model it using the "is-a" relationship via inheritance, you quickly
 get into trouble.
 
-**Bad:**
+**بد:**
 
 ```javascript
 class Rectangle {
@@ -1656,7 +1657,7 @@ huge amounts of options is beneficial, because most of the time they won't need
 all of the settings. Making them optional helps prevent having a
 "fat interface".
 
-**Bad:**
+**بد:**
 
 ```javascript
 class DOMTraverser {
@@ -1741,7 +1742,7 @@ and properties that an object/class exposes to another object/class. In the
 example below, the implicit contract is that any Request module for an
 `InventoryTracker` will have a `requestItems` method.
 
-**Bad:**
+**بد:**
 
 ```javascript
 class InventoryRequester {
@@ -1840,7 +1841,7 @@ or refactoring an existing one.
 
 ### Single concept per test
 
-**Bad:**
+**بد:**
 
 ```javascript
 import assert from "assert";
@@ -1899,7 +1900,7 @@ describe("MomentJS", () => {
 Callbacks aren't clean, and they cause excessive amounts of nesting. With ES2015/ES6,
 Promises are a built-in global type. Use them!
 
-**Bad:**
+**بد:**
 
 ```javascript
 import { get } from "request";
@@ -1951,7 +1952,7 @@ in an `async` keyword, and then you can write your logic imperatively without
 a `then` chain of functions. Use this if you can take advantage of ES2017/ES8 features
 today!
 
-**Bad:**
+**بد:**
 
 ```javascript
 import { get } from "request-promise";
@@ -2008,7 +2009,7 @@ to the console. If you wrap any bit of code in a `try/catch` it means you
 think an error may occur there and therefore you should have a plan,
 or create a code path, for when it occurs.
 
-**Bad:**
+**بد:**
 
 ```javascript
 try {
@@ -2039,7 +2040,7 @@ try {
 For the same reason you shouldn't ignore caught errors
 from `try/catch`.
 
-**Bad:**
+**بد:**
 
 ```javascript
 getdata()
@@ -2088,7 +2089,7 @@ JavaScript is untyped, so capitalization tells you a lot about your variables,
 functions, etc. These rules are subjective, so your team can choose whatever
 they want. The point is, no matter what you all choose, just be consistent.
 
-**Bad:**
+**بد:**
 
 ```javascript
 const DAYS_IN_WEEK = 7;
@@ -2128,7 +2129,7 @@ If a function calls another, keep those functions vertically close in the source
 file. Ideally, keep the caller right above the callee. We tend to read code from
 top-to-bottom, like a newspaper. Because of this, make your code read that way.
 
-**Bad:**
+**بد:**
 
 ```javascript
 class PerformanceReview {
@@ -2216,7 +2217,7 @@ review.perfReview();
 
 Comments are an apology, not a requirement. Good code _mostly_ documents itself.
 
-**Bad:**
+**بد:**
 
 ```javascript
 function hashIt(data) {
@@ -2261,7 +2262,7 @@ function hashIt(data) {
 
 Version control exists for a reason. Leave old code in your history.
 
-**Bad:**
+**بد:**
 
 ```javascript
 doStuff();
@@ -2283,7 +2284,7 @@ doStuff();
 Remember, use version control! There's no need for dead code, commented code,
 and especially journal comments. Use `git log` to get history!
 
-**Bad:**
+**بد:**
 
 ```javascript
 /**
@@ -2312,7 +2313,7 @@ function combine(a, b) {
 They usually just add noise. Let the functions and variable names along with the
 proper indentation and formatting give the visual structure to your code.
 
-**Bad:**
+**بد:**
 
 ```javascript
 ////////////////////////////////////////////////////////////////////////////////
