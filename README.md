@@ -21,8 +21,11 @@
 you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
 
 C. Martin اصول طراحی نرم افزار، برگرفته از کتاب 
+
+
 [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
 ویرایش شده برای جاوااسکریپت. این راهنما برای استایل دهی به کد نیست، برای نوشتن کدی .
+
 
 [خوانا، قابل استفاده مجدد و توسعه پذیر](https://github.com/ryanmcdermott/3rs-of-software-architecture) در زبان جاوااسکریپت می باشد.
 
