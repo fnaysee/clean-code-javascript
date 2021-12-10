@@ -15,12 +15,13 @@
 11. [Comments](#comments)
 12. [Translation](#translation)
 
-## Introduction
+## مقدمه
 
 ![Humorous image of software quality estimation as a count of how many expletives
 you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
 
 Software engineering principles, from Robert C. Martin's book
+C. Martin اصول طراحی نرم افزار، برگرفته از کتاب 
 [_Clean Code_](https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882),
 adapted for JavaScript. This is not a style guide. It's a guide to producing
 [readable, reusable, and refactorable](https://github.com/ryanmcdermott/3rs-of-software-architecture) software in JavaScript.
