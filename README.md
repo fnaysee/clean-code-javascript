@@ -93,7 +93,7 @@ setTimeout(blastOff, MILLISECONDS_PER_DAY);
 
 **[⬆ بالا](#table-of-contents)**
 
-### Use explanatory variables
+### از متغییر برای توضیح استفاده نمایید
 
 **بد:**
 
@@ -118,8 +118,9 @@ saveCityZipCode(city, zipCode);
 **[⬆ بالا](#table-of-contents)**
 
 ### Avoid Mental Mapping
+### از مپ کردن در ذهنتان خودداری کنید
 
-Explicit is better than implicit.
+اسامی واضح بهتر از اسامی غیر واضح است.
 
 **بد:**
 
@@ -152,8 +153,9 @@ locations.forEach(location => {
 
 **[⬆ بالا](#table-of-contents)**
 
-### Don't add unneeded context
+### از افزودن کلمات غیر ضروری خودداری کنید
 
+ اگر نام کلاس / شی (آبجکت) شما مفهومی را میرساند، همان مفهوم را در نام متغییرهایتان تکرار نکنید. 
 If your class/object name tells you something, don't repeat that in your
 variable name.
 
@@ -187,8 +189,9 @@ function paintCar(car, color) {
 
 **[⬆ بالا](#table-of-contents)**
 
-### Use default arguments instead of short circuiting or conditionals
+### به جای اتصال کوتاه یا شرطی از آرگومان های پیشفرض استفاده نمایید
 
+آرگومان های دارای مقدار پیشفرض معمولا بهتر از short circuiting می باشد. باید بدانید که اگر از آنها استفاده نمایید، در این صورت فانکشن شما تنها برای آرگومان های با   `undefined` "falsy"  `''`  `""`  `false` و و مانند یک مقدار پیشفرض خواهد داشت. و برای دیگر مقادیر مقدار 
 Default arguments are often cleaner than short circuiting. Be aware that if you
 use them, your function will only provide default values for `undefined`
 arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
