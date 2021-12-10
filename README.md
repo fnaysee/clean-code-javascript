@@ -27,8 +27,9 @@ you shout when reading code](https://www.osnews.com/images/comics/wtfm.jpg)
 [خوانا، قابل استفاده مجدد و توسعه پذیر](https://github.com/ryanmcdermott/3rs-of-software-architecture) در زبان جاوااسکریپت می باشد.
 
 نیازی نیست به طور حتمی از تمامی قواعد مطرح شده در این راهنما پیروری نمایید، و برخی از قواعد مطرح شده مورد تایید همه نیست.
-اصول مطرح شده در اینجا صرفا جهت ترسیم خط مشی در کدنویسی می باشند، نه چیزی بیشتر از آن، اما اصول مطرح شد، حاصل سالها تجربه نویسندگان _Clean Code_ می باشد که برایتان گردآوری شده است. 
-.
+اصول مطرح شده در اینجا صرفا جهت ترسیم خط مشی در کدنویسی می باشند، نه چیزی بیشتر از آن، اما اصول مطرح شده، حاصل سالها تجربه نویسندگان _Clean Code_ می باشد که برایتان گردآوری شده است. 
+
+سابقه ما، در مهندسی نرم افزار کمی بیش از 50 سال می باشد،و همچنان در حال یادگیری می باشیم.
 
 Our craft of software engineering is just a bit over 50 years old, and we are
 still learning a lot. When software architecture is as old as architecture
