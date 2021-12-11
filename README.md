@@ -348,7 +348,6 @@ addMonthToDate(1, date);
 
 **[⬆ بالا](#table-of-contents)**
 
-### Functions should only be one level of abstraction
 ### توابع باید تنها دارای یک سطح انتزاعی باشند
 
 وقتی شما بیش از یک سطح انتزاعی داشته باشید، فانکشن شما دارد کارهای زیادی انجام می دهد. 
@@ -420,29 +419,22 @@ function parse(tokens) {
 
 **[⬆ بالا](#table-of-contents)**
 
-### Remove duplicate code
 ### کد تکراری را حذف کنید
 
 تمام تلاشتان را بکنید که از نوشتن کد تکراری خودداری نمایید. کد تکراری بد است، چرا که در صورت نیاز به تغییر بیش از یک جا را باید تغییر دهید.
 
+تصور کنید که شما یک رستوران دار هستید و جزئیات را غذاها را در فهرستتان درج می کنید. همه جزئیات مانند، گوجه، پیاز، سیر، ادویه ها و غیره...
+در این صورت اگر چندین لیست داشته باشید که در آن این جزئیات را درج کرده باشید، همه آنها را باید آپدیت کنید.
+اما اگر تنها یک بیست منو داشته باشید، فقط نیاز به بروزرسانی یکجا را دارید!
 
+معمولا شما کد تکراری را به این دلیل دارید که هر کدامشان در حال انجام کاری کمی متفاوت از دیگری است، گرچه کدهایتان کاری یکسان انجام می دهند، اما به خاطر تفاوت های جزئیشان مجبورید دو یا چند تابع جداگانه داشته باشید که کارهایشان تا حد زیادی مشابه یکدیگر است.
+حذف کد تکراری به معنای ایجاد یک انتزاع است که بتواند یک ست از چیزهای متفاوت را تنها با یک فانکشن / ماژول / کلاس انجام دهد.
 
-Imagine if you run a restaurant and you keep track of your inventory: all your
-tomatoes, onions, garlic, spices, etc. If you have multiple lists that
-you keep this on, then all have to be updated when you serve a dish with
-tomatoes in them. If you only have one list, there's only one place to update!
-
-Oftentimes you have duplicate code because you have two or more slightly
-different things, that share a lot in common, but their differences force you
-to have two or more separate functions that do much of the same things. Removing
-duplicate code means creating an abstraction that can handle this set of
-different things with just one function/module/class.
-
-Getting the abstraction right is critical, that's why you should follow the
-SOLID principles laid out in the _Classes_ section. Bad abstractions can be
-worse than duplicate code, so be careful! Having said this, if you can make
-a good abstraction, do it! Don't repeat yourself, otherwise you'll find yourself
-updating multiple places anytime you want to change one thing.
+درست ایجاد کردن یک انتزاع بسیار مهم است، به این دلیل است که توصیه می شود از اصول سخت گیرانه مطرح شده در بخش 
+_Classes_
+پیروی نمایید.
+انتزاع نامناسب می تواند بدتر از کد تکراری باشد، پس مراقب باشید! 
+با توجه به آنچه گفته شد، اگر می توانید یک انتزاع مناسب ایجاد نمایید، آن را انجام دهید، در غیر این صورت خود را به زحمت دوباره کاری می اندازید و متوجه می شوید که برای یک تغییر ساده باید چندین جا را ویرایش نمایید.
 
 **بد:**
 
@@ -507,7 +499,7 @@ function showEmployeeList(employees) {
 
 **[⬆ بالا](#table-of-contents)**
 
-### Set default objects with Object.assign
+### آبجکت های پیشفرض را با Object.assign ست کنید
 
 **بد:**
 
@@ -560,9 +552,9 @@ createMenu(menuConfig);
 
 **[⬆ بالا](#table-of-contents)**
 
-### Don't use flags as function parameters
+### از flag ها به عنوان پارامتر فانکشن استفاده نکنید
 
-Flags tell your user that this function does more than one thing. Functions should do one thing. Split out your functions if they are following different code paths based on a boolean.
+فلگ ها به کاربر شما می گوید، که این تابع بیش از یک کار انجام می دهد. توابع باید یک کار انجام دهند. در صورتی که توابع تان توسط فلگ کارهای متفاوتی انجام می دهند، آنها را تقسیم نمایید.
 
 **بد:**
 
@@ -591,11 +583,12 @@ function createTempFile(name) {
 **[⬆ بالا](#table-of-contents)**
 
 ### Avoid Side Effects (part 1)
+### از عوارض جانبی پشگیری کنید (بخش اول)
 
-A function produces a side effect if it does anything other than take a value in
-and return another value or values. A side effect could be writing to a file,
-modifying some global variable, or accidentally wiring all your money to a
-stranger.
+یک تابع باعث عوارض جانبی می شود، اگر کاری بیش از دریافت یک مقدار و بازگرداندن یک یا چند مقدار انجام دهد. 
+یک عارضه جانبی می تواند، نوشتن در یک فایل، ویرایش متغییرهای گلوبال، و یا اشتباها قرار دادن پول تان در دسترس یک غریبه است.
+
+
 
 Now, you do need to have side effects in a program on occasion. Like the previous
 example, you might need to write to a file. What you want to do is to
