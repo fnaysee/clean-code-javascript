@@ -156,8 +156,6 @@ locations.forEach(location => {
 ### از افزودن کلمات غیر ضروری خودداری نمایید
 
  اگر نام کلاس / شی (آبجکت) شما مفهومی را میرساند، همان مفهوم را در نام متغییرهایتان تکرار نکنید. 
-If your class/object name tells you something, don't repeat that in your
-variable name.
 
 **بد:**
 
@@ -227,34 +225,37 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 محدود کردن تعداد پارامترهای تابع بسیار مهم است، چرا که تست تابع تان را آسان تر می کند. داشتن بیشتر از 3 آرگومان منجر به انفجار ترکیبی 
 (combinatorial explosion)
 می شود.
-که بدین معنی است که برای تست آن باید، حالت های بسیار زیادی را به ازای هر آرگومان آن 
-Limiting the amount of function parameters is incredibly important because it
-makes testing your function easier. Having more than three leads to a
-combinatorial explosion where you have to test tons of different cases with
-each separate argument.
 
-One or two arguments is the ideal case, and three should be avoided if possible.
-Anything more than that should be consolidated. Usually, if you have
-more than two arguments then your function is trying to do too much. In cases
-where it's not, most of the time a higher-level object will suffice as an
-argument.
+که بدین معنی است که برای تست آن باید، حالت های بسیار زیادی را به ازای هر آرگومان آن تست کنید. 
 
-Since JavaScript allows you to make objects on the fly, without a lot of class
-boilerplate, you can use an object if you are finding yourself needing a
-lot of arguments.
+یک یا دو آرگومان حالت ایده آل می باشد، و از 3 ارگومان تا جای ممکن باید خودداری شود.
+هرچیزی بیشتر از آن باید تجمیع شود. 
+معمولا در صورتی که فانکشن شما به بیشتر از 3 آرگومان نیاز داشته باشد، نشان دهنده آن است که دارد بیش از یک کار انجام می دهد (کارهای زیادی انجام می دهد).
+در صورتی که اینچنین نیست، معمولا آبجکت والد فانکشن شما به عنوان آرگومان برای فانکشنتان کافی است.
 
-To make it obvious what properties the function expects, you can use the ES2015/ES6
-destructuring syntax. This has a few advantages:
+از آنجا که در جاوااسکریپت می توانید یه راحتی یک آبجکت بسازید، در صورتی که نیاز دیدید که تعداد زیادی آرگومان داشته باشید، می توانید به جای آن یک آبجکت بسازید.
 
-1. When someone looks at the function signature, it's immediately clear what
-   properties are being used.
-2. It can be used to simulate named parameters.
-3. Destructuring also clones the specified primitive values of the argument
-   object passed into the function. This can help prevent side effects. Note:
-   objects and arrays that are destructured from the argument object are NOT
-   cloned.
-4. Linters can warn you about unused properties, which would be impossible
-   without destructuring.
+برای واضح کردن اینکه فانکشن شما چه آرگومان هایی دریافت می کند، می توانید از قابلیت
+destructuring syntax
+در
+ES2015/ES6
+استفاده نمایید. که مزایای زیر را دارد:
+1. وقتی کسی به تعریف فانکشنتان نگاه می اندازد، به سرعت متوجه می شود چه پروپرتی هایی مورد استفاده قرار گرفته اند. 
+2. می توان از آن برایشبیه سازی پارامترهای دارای نام استفاده نمود.
+3. قابلیت 
+ Destructuring
+همچنین مقادیر موجود پروپرتی های ابجکتتان را در متغییرهای جدید 
+clone
+می کند، که مانع از عوارض جانبی پیش بینی نشده، ناشی از ویرایش احتمالی مقدار پروپرتی های آبجکت می شود. نکته: دقت داشته باشید که آبجکت و آرایه هایی که از آبجکت آرگومان 
+destructure
+ مشوند، مقدارشان
+ clone 
+ نمی شود
+ 4. ابزارهای 
+ Linter 
+ کد، شما را از پراپرتی های بلااستفاده آبجکتتان اگاه می کنند، که بدون قابلیت
+ destructuring
+ غیر ممکن می باشد.
 
 **بد:**
 
@@ -284,13 +285,12 @@ createMenu({
 
 **[⬆ بالا](#table-of-contents)**
 
-### Functions should do one thing
+### فانکشن ها باید یک کار انجام دهند
 
-This is by far the most important rule in software engineering. When functions
-do more than one thing, they are harder to compose, test, and reason about.
-When you can isolate a function to just one action, it can be refactored
-easily and your code will read much cleaner. If you take nothing else away from
-this guide other than this, you'll be ahead of many developers.
+این مورد با فاصله بسیار زیاد، مهم ترین قاعده در مهندسی نرم افزار است.
+وقتی فانکشن ها بیش از یک کار انجام دهند، به سختی قابل ساختن، تست بوده و فهم عملکردشان با یک نگاه ساده غیر ممکن می باشد .
+وقتی که فانکشنی به یک کار محدود شده باشد، به راحتی قابل بازنویسی (ریفکتور) می باشد، و کد شما بسیار خوانا می شود.
+اگر فقط همین یک مورد را شما عملا از این راهنما یادبگیرید، از دولوپرهای دیگر بسیار جلوتر خواهید بود.
 
 **بد:**
 
@@ -320,7 +320,7 @@ function isActiveClient(client) {
 
 **[⬆ بالا](#table-of-contents)**
 
-### Function names should say what they do
+### نام توابع باید گویای کاری باشد که انجام می دهند
 
 **بد:**
 
@@ -349,6 +349,7 @@ addMonthToDate(1, date);
 **[⬆ بالا](#table-of-contents)**
 
 ### Functions should only be one level of abstraction
+### 
 
 When you have more than one level of abstraction your function is usually
 doing too much. Splitting up functions leads to reusability and easier
