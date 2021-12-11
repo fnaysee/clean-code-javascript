@@ -349,8 +349,10 @@ addMonthToDate(1, date);
 **[⬆ بالا](#table-of-contents)**
 
 ### Functions should only be one level of abstraction
-### 
+### توابع باید تنها دارای یک سطح انتزاعی باشند
 
+وقتی شما بیش از یک سطح انتزاعی داشته باشید، فانکشن شما دارد کارهای زیادی انجام می دهد. 
+تقسیم کردن توابع
 When you have more than one level of abstraction your function is usually
 doing too much. Splitting up functions leads to reusability and easier
 testing.
