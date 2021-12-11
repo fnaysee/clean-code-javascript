@@ -352,10 +352,7 @@ addMonthToDate(1, date);
 ### توابع باید تنها دارای یک سطح انتزاعی باشند
 
 وقتی شما بیش از یک سطح انتزاعی داشته باشید، فانکشن شما دارد کارهای زیادی انجام می دهد. 
-تقسیم کردن توابع
-When you have more than one level of abstraction your function is usually
-doing too much. Splitting up functions leads to reusability and easier
-testing.
+تقسیم کردن توابع منجر به قابلیت استفاده مجدد سادگی در تست می شود.
 
 **بد:**
 
@@ -424,10 +421,11 @@ function parse(tokens) {
 **[⬆ بالا](#table-of-contents)**
 
 ### Remove duplicate code
+### کد تکراری را حذف کنید
 
-Do your absolute best to avoid duplicate code. Duplicate code is bad because it
-means that there's more than one place to alter something if you need to change
-some logic.
+تمام تلاشتان را بکنید که از نوشتن کد تکراری خودداری نمایید. کد تکراری بد است، چرا که در صورت نیاز به تغییر بیش از یک جا را باید تغییر دهید.
+
+
 
 Imagine if you run a restaurant and you keep track of your inventory: all your
 tomatoes, onions, garlic, spices, etc. If you have multiple lists that
