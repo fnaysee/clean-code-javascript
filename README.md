@@ -191,11 +191,14 @@ function paintCar(car, color) {
 
 ### به جای اتصال کوتاه یا شرطی از آرگومان های پیشفرض استفاده نمایید
 
-آرگومان های دارای مقدار پیشفرض معمولا بهتر از short circuiting می باشد. باید بدانید که اگر از آنها استفاده نمایید، در این صورت فانکشن شما تنها برای آرگومان های با   `undefined` "falsy"  `''`  `""`  `false` و و مانند یک مقدار پیشفرض خواهد داشت. و برای دیگر مقادیر مقدار 
-Default arguments are often cleaner than short circuiting. Be aware that if you
-use them, your function will only provide default values for `undefined`
-arguments. Other "falsy" values such as `''`, `""`, `false`, `null`, `0`, and
-`NaN`, will not be replaced by a default value.
+آرگومان های دارای مقدار پیشفرض معمولا بهتر از short circuiting می باشد.
+باید بدانید که اگر از آنها استفاده نمایید، در این صورت فانکشن شما تنها برای آرگومان های با مقدار
+ `undefined`
+ یک مقدار پیشفرض خواهد داشت .
+ "falsy" دیگر مقادیر 
+ مانند
+ `''`و `""`و `false`و `null`و `0`و و`NaN` 
+با مقادیر پیشرفتان جایگزین نخواهند شد
 
 **بد:**
 
@@ -216,10 +219,14 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 
 **[⬆ بالا](#table-of-contents)**
 
-## **Functions**
+## **تابع ها**
 
-### Function arguments (2 or fewer ideally)
+### آرگومان های توابع (2 یا کمتر بهتر است)
 
+محدود کردن تعداد پارامترهای تابع بسیار مهم است، چرا که تست تابع تان را آسان تر می کند. داشتن بیشتر از 3 آرگومان منجر به انفجار ترکیبی 
+(combinatorial explosion)
+می شود.
+که بدین معنی است که برای تست آن باید، حالت های بسیار زیادی را به ازای هر آرگومان آن 
 Limiting the amount of function parameters is incredibly important because it
 makes testing your function easier. Having more than three leads to a
 combinatorial explosion where you have to test tons of different cases with
