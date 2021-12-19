@@ -15,6 +15,8 @@
 11. [Comments](#comments)
 12. [Translation](#translation)
 
+1. [مقدمه](#introduction)
+
 ## مقدمه
 
 ![Humorous image of software quality estimation as a count of how many expletives
