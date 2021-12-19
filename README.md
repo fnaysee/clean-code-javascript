@@ -15,7 +15,10 @@
 11. [Comments](#comments)
 12. [Translation](#translation)
 
-1. [مقدمه](#introduction)
+1. [مقدمه](#مقدمه)
+2. [متغییرها](#متغییرها)
+3. [توابع](توابع)
+4. [اشیا و ساختار داده ها](اشیا-و-ساختار-داده-ها)
 
 ## مقدمه
 
@@ -220,7 +223,7 @@ function createMicrobrewery(name = "Hipster Brew Co.") {
 
 **[⬆ بالا](#table-of-contents)**
 
-## **تابع ها**
+## **توابع**
 
 ### آرگومان های توابع (2 یا کمتر بهتر است)
 
@@ -1029,7 +1032,7 @@ inventoryTracker("apples", req, "www.inventory-awesome.io");
 
 **[⬆ بالا](#table-of-contents)**
 
-## **Objects and Data Structures**
+## **اشیا و ساختار داده ها**
 
 ### Use getters and setters
 
