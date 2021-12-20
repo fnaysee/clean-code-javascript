@@ -588,23 +588,16 @@ function createTempFile(name) {
 
 **[⬆ بالا](#table-of-contents)**
 
-### Avoid Side Effects (part 1)
-### از عوارض جانبی پشگیری کنید (بخش اول)
+### از عوارض جانبی پشگیری کنید (بخش 1)
 
 یک تابع باعث عوارض جانبی می شود، اگر کاری بیش از دریافت یک مقدار و بازگرداندن یک یا چند مقدار انجام دهد. 
 یک عارضه جانبی می تواند، نوشتن در یک فایل، ویرایش متغییرهای گلوبال، و یا اشتباها قرار دادن پول تان در دسترس یک غریبه است.
 
+گاهی اوقات ممکن است، در یک نرم افزار نیاز داشته باشید که تغییراتی کنترل نشده داشته باشید. مانند مثال قبل، ممکن است نیاز داشته باشید که در فایل چیزی را بنویسید. کاری که باید انجام دهید این است که عملیات مورد نظرتان را در یک مکان متمرکز کنید و از داشتن چندین تابع که همین کار را انجام می دهند خودداری کنید. به عنوان مثال می توانید فقط یک سرویس برای درج دیتا ها در آن فایل داشته باشید و در هر جایی از کدتان از همان سرویس استفاده نمایید.
 
+امتیاز اصلی این عمل این است که از دردسرهای متداول پیشگیری می کنید. مانند: شیر کردن وضعیت بین آبجکت ها بدون هیچ ساختار منظمی، استفاده از متعییرهای قابل تغییر که ممکن است در هر بخشی از کدها مقدارشان دستکاری شده باشد، و متمرکز نبودن نقطه ای که عملیات جانبی شما اتفاق می افتد. 
+اگر این کار را انجام دهید، از بسیاری برنامه نویسان دیگر خوشحال تر خواهید بود. 
 
-Now, you do need to have side effects in a program on occasion. Like the previous
-example, you might need to write to a file. What you want to do is to
-centralize where you are doing this. Don't have several functions and classes
-that write to a particular file. Have one service that does it. One and only one.
-
-The main point is to avoid common pitfalls like sharing state between objects
-without any structure, using mutable data types that can be written to by anything,
-and not centralizing where your side effects occur. If you can do this, you will
-be happier than the vast majority of other programmers.
 
 **بد:**
 
@@ -638,27 +631,23 @@ console.log(newName); // ['Ryan', 'McDermott'];
 
 **[⬆ بالا](#table-of-contents)**
 
-### Avoid Side Effects (part 2)
+### از عوارض جانبی پشگیری کنید (بخش 2)
 
-In JavaScript, some values are unchangeable (immutable) and some are changeable 
-(mutable). Objects and arrays are two kinds of mutable values so it's important 
-to handle them carefully when they're passed as parameters to a function. A 
-JavaScript function can change an object's properties or alter the contents of 
-an array which could easily cause bugs elsewhere.
+در جاوااسکریپت، برخی متغییرها، مقدارشان قابل تغییر و برخی دیگر غیرقابل تغییر است. آبجکت ها و ارایه ها مقدارشان قابل تغییر است. پس باید بسیار دقت داشته باشید، وقتی که آنها را به عنوان پارامتر به یک تابع ارسال می کنید، چرا که ممکن است در آنجا پروپرتی های ابجکت دستکاری شوند و یا محتوای آرایه تغییر کند، که به راحتی موجب بروز باگ در جای دیگری از کدتان می شود.
 
-Suppose there's a function that accepts an array parameter representing a 
-shopping cart. If the function makes a change in that shopping cart array - 
-by adding an item to purchase, for example - then any other function that 
-uses that same `cart` array will be affected by this addition. That may be 
-great, however it could also be bad. Let's imagine a bad situation:
+تصور کنید که تابعی دارید که یک آرایه را به عنوان پارامتر دریافت می کند که حاوی اطلاعات کارت خرید مشتری است. 
+اگر تابع شما تغییری در آن ارایه ایجاد کند، به عنوان مثال یک آیتم به آن اضافه نماید - در این صورت هر تابع دیگری که از آن آرایه استفاده می کند، تحت تاثیر این تغییر قرار می گیرد. شاید به نظر این اتفاق خیلی خوبی باشد، اما باید بدانید که می تواند بد هم باشد. بیایید که حالت بد را تصویر کنیم:
 
-The user clicks the "Purchase" button which calls a `purchase` function that
-spawns a network request and sends the `cart` array to the server. Because
-of a bad network connection, the `purchase` function has to keep retrying the
-request. Now, what if in the meantime the user accidentally clicks an "Add to Cart"
-button on an item they don't actually want before the network request begins?
-If that happens and the network request begins, then that purchase function
-will send the accidentally added item because the `cart` array was modified.
+کاربر بر روی دکمه خرید کلیک می کند، که این دکمه نیز فانکشن 
+purchase
+را فراخوانی کند و درنهایت یک درخواست برای سرور ارسال می شود که حاوی آرایه ی موارد انتخابی برای خرید است.
+اما به دلیل اختلال در شبکه فانکشن 
+purchase
+مرتب به خطا مواجه می شود و نیاز پیدا می کند که درخواست را مرتبا تکرار نماید.
+حالا چه اتفاقی می افتد اگر کاربر به صورت اتفاقی، دکمه افزودن به سبد را مجددا کلیک کند ؟
+اگر این اتفاق بیوفتد و درخواست برای سرور مجددا ارسال شود، آیتم جدید که اتفاقی اضافه  شده بود برای سرور ارسال می شود. چرا که این آیتم به آرایه ما اضافه شده است.
+
+
 
 A great solution would be for the `addItemToCart` function to always clone the 
 `cart`, edit it, and return the clone. This would ensure that functions that are still
