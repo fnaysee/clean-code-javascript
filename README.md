@@ -2,10 +2,10 @@
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
-2. [Variables](#variables)
-3. [Functions](#functions)
-4. [Objects and Data Structures](#objects-and-data-structures)
+1. [مقدمه](#مقدمه)
+2. [متغییرها](#متغییرها)
+3. [توابع](#توابع)
+4. [اشیا و ساختار داده ها](#اشیا-و-ساختار-داده-ها)
 5. [Classes](#classes)
 6. [SOLID](#solid)
 7. [Testing](#testing)
@@ -15,10 +15,7 @@
 11. [Comments](#comments)
 12. [Translation](#translation)
 
-1. [مقدمه](#مقدمه)
-2. [متغییرها](#متغییرها)
-3. [توابع](#توابع)
-4. [اشیا و ساختار داده ها](#اشیا-و-ساختار-داده-ها)
+
 
 
 ## مقدمه
