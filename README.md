@@ -644,23 +644,15 @@ purchase
 حالا چه اتفاقی می افتد اگر کاربر به صورت اتفاقی، دکمه افزودن به سبد را مجددا کلیک کند ؟
 اگر این اتفاق بیوفتد و درخواست برای سرور مجددا ارسال شود، آیتم جدید که اتفاقی اضافه  شده بود برای سرور ارسال می شود. چرا که این آیتم به آرایه ما اضافه شده است.
 
+یک راه حل خیلی خوب این است که فانکشن `addItemToCart` همیشه یک نسخه کپی از `cart` تهیع، آن را ویرایش کرده و برگرداند. این موضوع باعث می شود که فانکشن های دیگری که در حال استفاده از این فانکشن هستند، تحت تاثیر این تغییر قرار نگیرند.
 
+دو هشدار برای استفاده از این روش:
+1- ممکن است که حالتی پیش آید که شما بخواهید آبجکت ورودی را دستکاری کنید، اما وقتی این روش را پیاده سازی کنید، خواهید دید که این موارد بسیار نادر اتفاق می افتند. اکثر بخش ها قابل باز نویسی هستند، تا ساید افکت نداشته باشید!
 
-A great solution would be for the `addItemToCart` function to always clone the 
-`cart`, edit it, and return the clone. This would ensure that functions that are still
-using the old shopping cart wouldn't be affected by the changes.
+2- کپی گرفتن ابجکت های خیلی بزرگ ممکن است به لحاظ پرفورمنسی شما را دچار مشکل کنند. خوشبختانه این مساله مشکل حادی نیست، چرا که  
+[کتابخانه های بسیار خوبی](https://facebook.github.io/immutable-js/)
+ برای این مشکل توسعه داده شده اند که باعث می شوند این تکنینک کدنویسی، تا جای ممکن سریع باشد و حافظه را به خوبی مدیریت کند و عملکردشان بسیار بهتر از آن است که خودتان این کار را انجام دهید.
 
-Two caveats to mention to this approach:
-
-1. There might be cases where you actually want to modify the input object,
-   but when you adopt this programming practice you will find that those cases
-   are pretty rare. Most things can be refactored to have no side effects!
-
-2. Cloning big objects can be very expensive in terms of performance. Luckily,
-   this isn't a big issue in practice because there are
-   [great libraries](https://facebook.github.io/immutable-js/) that allow
-   this kind of programming approach to be fast and not as memory intensive as
-   it would be for you to manually clone objects and arrays.
 
 **بد:**
 
@@ -681,16 +673,15 @@ const addItemToCart = (cart, item) => {
 **[⬆ بالا](#table-of-contents)**
 
 ### Don't write to global functions
+### فانکشن گلوبال ننویسید
 
-Polluting globals is a bad practice in JavaScript because you could clash with another
-library and the user of your API would be none-the-wiser until they get an
-exception in production. Let's think about an example: what if you wanted to
-extend JavaScript's native Array method to have a `diff` method that could
-show the difference between two arrays? You could write your new function
-to the `Array.prototype`, but it could clash with another library that tried
-to do the same thing. What if that other library was just using `diff` to find
-the difference between the first and last elements of an array? This is why it
-would be much better to just use ES2015/ES6 classes and simply extend the `Array` global.
+یک تمرین خیلی بد در جاوااسکریپت آلوده کردن فضای گلوبال به فانکشن هایی است که می نویسید. این فانکشن ها ممکن است به راحتی با فانکشن های یک کتابخانه ی دیگر تداخل ایجاد کنند. و ممکن است کاربر شما حتی متوجه این ایراد نشود، تا زمانی که به یک خطا در هنگام دیپلوی بر روی نسخه پابلیک بربخورد.  
+فرض کنید شما در کتابخانه تان یک متود با نام `diff` به متود Array که پیشفرض جاوااسکریت است اضافه می کنید، که کاربردش نماش تفاوت میان دو آرایه است. برای این کار شما به  
+`Array.prototype`
+ یک متود اضافه می کنید، چه اتفاقی میافتد اگر کتابخانه دیگری سعی کند متود مشابهی را برای نمایش تفاوت دو المان اول و آخر یک آرایه نوشته باشد؟
+ 
+ به این دلیل بهتر است که از کلاس ها که در ES2015/ES6 اضافه شده اند استفاده نمایید و اکستند کردن `Array` کلاس خودتان را ایجاد و متود جدیدتان را به آن اضافه نمایید.  
+ 
 
 **بد:**
 
@@ -716,9 +707,11 @@ class SuperArray extends Array {
 
 ### Favor functional programming over imperative programming
 
-JavaScript isn't a functional language in the way that Haskell is, but it has
-a functional flavor to it. Functional languages can be cleaner and easier to test.
-Favor this style of programming when you can.
+### ترجیحا از برنامه نویسی فانکشنال استفاده نمایید
+
+جاوااسکریپت زبان فانکشنال، به صورتی که در هسکل می بینیم، نیست، اما قابلیت فانکشنال بودن را دارد. زبان های فانکشنال تمیزتر و قابل تست تر هستند. 
+هرجا ممکن است از این استایل کدنویسی استفاده کنید.
+
 
 **بد:**
 
@@ -781,6 +774,9 @@ const totalOutput = programmerOutput.reduce(
 
 ### Encapsulate conditionals
 
+### شروط را کپسوله (خلاصه) کنید
+
+
 **بد:**
 
 ```javascript
@@ -804,6 +800,9 @@ if (shouldShowSpinner(fsmInstance, listNodeInstance)) {
 **[⬆ بالا](#table-of-contents)**
 
 ### Avoid negative conditionals
+
+### از نوشتن شروط منفی خودداری کنید
+
 
 **بد:**
 
@@ -833,14 +832,13 @@ if (isDOMNodePresent(node)) {
 
 ### Avoid conditionals
 
-This seems like an impossible task. Upon first hearing this, most people say,
-"how am I supposed to do anything without an `if` statement?" The answer is that
-you can use polymorphism to achieve the same task in many cases. The second
-question is usually, "well that's great but why would I want to do that?" The
-answer is a previous clean code concept we learned: a function should only do
-one thing. When you have classes and functions that have `if` statements, you
-are telling your user that your function does more than one thing. Remember,
-just do one thing.
+### از نوشتن شرط ها خودداری کنید
+
+این موضوع نشدنی به نظر میرسد. به محض شنیدن این جمله اکثر مردم می گویند چطور می شود بدون نوشتن یک شرط if کاری را انجام داد؟ پاسخ این است که در بسیاری از موارد می توانید از 
+polymorphism 
+استفاده نمایید. سوال دوم معمولا این است که خیلی هم عالی، اما چرا باید این کار را بکنم؟ پاسخ این است که در راهکار کدنویسی تمیز که قبلا یادگرفتیم، گفتیم که: یک تابع فقط باید یک کار انجام دهد، وقتی فانکشنی مینویسید که در آن از دستور if استفاده شده، به کاربر خود می گویید که فانکشن شما بیش از یک کار را انجام میدهد. این را به خاطر بسپارید: فقط یک کار انجام دهید!
+
+
 
 **بد:**
 
@@ -893,10 +891,12 @@ class Cessna extends Airplane {
 
 ### Avoid type-checking (part 1)
 
-JavaScript is untyped, which means your functions can take any type of argument.
-Sometimes you are bitten by this freedom and it becomes tempting to do
-type-checking in your functions. There are many ways to avoid having to do this.
-The first thing to consider is consistent APIs.
+### از چک کردن تایپ ها خودداری کنید (بخش 1)
+
+جاوااسکریپت untyped است. بدین معنی که فانکشن های می توانند هر نوع آرگومانی دریافت کنند. گاهی اوقات ممکن است این موضوع شما را فریب بدهد و باعث شود تلاش کنید در فانکشنتان تایپ ورودی ها را چک کنید. 
+راه های زیادی برای خودداری از این کار وجود دارد. 
+اولین آن داشتن API های تطابق پذیر است.
+
 
 **بد:**
 
@@ -922,15 +922,13 @@ function travelToTexas(vehicle) {
 
 ### Avoid type-checking (part 2)
 
-If you are working with basic primitive values like strings and integers,
-and you can't use polymorphism but you still feel the need to type-check,
-you should consider using TypeScript. It is an excellent alternative to normal
-JavaScript, as it provides you with static typing on top of standard JavaScript
-syntax. The problem with manually type-checking normal JavaScript is that
-doing it well requires so much extra verbiage that the faux "type-safety" you get
-doesn't make up for the lost readability. Keep your JavaScript clean, write
-good tests, and have good code reviews. Otherwise, do all of that but with
-TypeScript (which, like I said, is a great alternative!).
+### از چک کردن تایپ ها خودداری کنید (بخش 2)
+
+اگر با مقادیر از نوع داده اولیه (primitive) مانند: integer , string سر و کار دارید و نمی توانید از polymorphism استفاده نمایید، اما همچنان احساس می کنید، نیاز به بررسی نوع دارید، می توانید از typescript استفاده نمایید.
+ که یک جایگزین عالی برای جاوااسکریپت معمولی است، چرا که قابلیت بررسی تایپ ایستا (static type checking) را با سینکتکسی مشابه جاوااسکریپت استاندارد را به شما میدهد.
+ مشکل بررسی تایپ به صورت دستی در جاوااسکریپت معمولی، این است که درست انجام دادنش، باید مقادیر زیادی کد بی مورد به کد اصلیتان اضافه کنید، که باعث ناخوانا و کثیف شدن کدها می شود. 
+کد تمیز و تست های خوب بنویسید و ریویوی خوب دریافت کنید. در غیر این صورت بهتر است از typescript استفاده کنید.
+
 
 **بد:**
 
@@ -959,11 +957,12 @@ function combine(val1, val2) {
 
 ### Don't over-optimize
 
-Modern browsers do a lot of optimization under-the-hood at runtime. A lot of
-times, if you are optimizing then you are just wasting your time. [There are good
-resources](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
-for seeing where optimization is lacking. Target those in the meantime, until
-they are fixed if they can be.
+### بیش از حد بهینه نکنید
+
+بسیاری از مرورگرها در runtime و در پسزمینه، بهینه سازی های بسیاری انجام میدهند.
+[منابع خوبی وجود دارند](https://github.com/petkaantonov/bluebird/wiki/Optimization-killers)
+ برای مشاهده اینکه بهینه سازی در کجا ضعف دارد. فقط همان ها راانجام دهید، تا زمانی که این بهینه سازی ها انجام شوند (اگر شدنی باشند)
+
 
 **بد:**
 
@@ -987,9 +986,11 @@ for (let i = 0; i < list.length; i++) {
 
 ### Remove dead code
 
-Dead code is just as bad as duplicate code. There's no reason to keep it in
-your codebase. If it's not being called, get rid of it! It will still be safe
-in your version history if you still need it.
+### کد بلا استفاده را حذف کنید
+
+کد بلااستفاده (مرده) به بدی کد تکراری است. دلیلی برای نگه داشتن آن در سورس کدهایتان وجود ندارد. اگر صدا زده نمی شود، از شرش خلاص شوید! 
+اگر فکر می کنید، ممکن است در آینده به آن احتیاج پیدا کنید، بدانید که جایش در تاریخچه ورژن هایتان امن است (مثلا git)، نگران نباشید!
+
 
 **بد:**
 
@@ -1022,6 +1023,16 @@ inventoryTracker("apples", req, "www.inventory-awesome.io");
 ## **اشیا و ساختار داده ها**
 
 ### Use getters and setters
+
+### از getter و setter ها استفاده کنید
+
+استفاده از getter و setter ها برای دسترسی به مقادیر موجود در یک آبجکت می تواند بهتر از دسترسی مستقیم به این مقادیر باشد. چرا؟ به این دلایل نامرتب:
+
+- اگر در زمان خواندن مقدار این متغییر نیاز پیدا کنید که کار خاصی انجام دهید، با یک متود واسط این کار راحت تر قابل انجام است.
+- زمانی که `set` انجام می دهید، خیلی راحت تر می توانید ورودی ها رو اعتبارسنجی (validate) کنید.
+- بخش داخلی را از دسترسی خارجی کپسوله می کنید.
+- لاگ گذاری و رسیدگی به خطا را آسان تر می کنید.
+- اگر فرضا قرار است از سرور مقادیرتان لود شود، میتوانید مقادیر آبجکتتان را بارگذاری در زمان نیاز lazy load کنید.
 
 Using getters and setters to access data on objects could be better than simply
 looking for a property on an object. "Why?" you might ask. Well, here's an
