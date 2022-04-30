@@ -1084,7 +1084,9 @@ account.setBalance(100);
 
 ### Make objects have private members
 
-This can be accomplished through closures (for ES5 and below).
+### پراپرتی های خصوصی برای آبجکت ها ایجاد کنید
+
+این مساله با استفاده از closure ها برای سینتکس قبل از ES5 امکان پذیر است.
 
 **بد:**
 
@@ -1124,12 +1126,21 @@ console.log(`Employee name: ${employee.getName()}`); // Employee name: John Doe
 
 ## **Classes**
 
+## **کلاس ها**
+
+
+
 ### Prefer ES2015/ES6 classes over ES5 plain functions
+
+### ترجیحا از کلاس های ES2015/ES6 به جای فانکشن های ES5 استفاده نمایید
 
 It's very difficult to get readable class inheritance, construction, and method
 definitions for classical ES5 classes. If you need inheritance (and be aware
 that you might not), then prefer ES2015/ES6 classes. However, prefer small functions over
 classes until you find yourself needing larger and more complex objects.
+
+ساختن چیزی مشابه کلاس های ES6 با استفاده از سینتکس ES5 کمی سخت است. مسائلی مانند ارث بری، ساخت نسخه اولیه و تعریف متود برای در کلاس های ES6 بسیار تسهیل و مفهومی تر شده اند. 
+گرچه توصیه می شود، ترجیحا از فانکشن های کوچک به جای کلاس هااستفاده نمایید، مگر اینکه به یک شی پیچیده و خیلی کامل احتیاج داشته باشید.
 
 **بد:**
 
@@ -1211,11 +1222,12 @@ class Human extends Mammal {
 
 ### Use method chaining
 
-This pattern is very useful in JavaScript and you see it in many libraries such
-as jQuery and Lodash. It allows your code to be expressive, and less verbose.
-For that reason, I say, use method chaining and take a look at how clean your code
-will be. In your class functions, simply return `this` at the end of every function,
-and you can chain further class methods onto it.
+### از قابلیت صدا زدن زنجیره ای متودها استفاده کنید.
+
+
+این ساختار بسیار کفید است در JavaScript و آن را در بسیاری از کتابخانه ها مانند jQuery و loadash می بینید.
+این ساختار باعث می سود که کدتان خودتوصیف گر و خلاصه شود.
+به همین دلیل توصیه می کنیم که از قابلیت صدازدن زنجیره ای استفاده کنید و ببینید چقدر کد نهاییتان تمیز و خوانا می شود. در متودهای کلاس تان، ابجکت this را در انتها برگردانید و این قابلیت را به همین سادگی فراهم کنید.
 
 **بد:**
 
@@ -1291,22 +1303,20 @@ const car = new Car("Ford", "F-150", "red").setColor("pink").save();
 
 ### Prefer composition over inheritance
 
-As stated famously in [_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns) by the Gang of Four,
-you should prefer composition over inheritance where you can. There are lots of
-good reasons to use inheritance and lots of good reasons to use composition.
-The main point for this maxim is that if your mind instinctively goes for
-inheritance, try to think if composition could model your problem better. In some
-cases it can.
+طبق توصیه های معروف مشابه 
+[_Design Patterns_](https://en.wikipedia.org/wiki/Design_Patterns)
+ بهتر است ترجیحا از مفهوم composition (ترکیب کردن) به جای ارث بری، هر جایی که امکان پذیر است استفاده نمایید.
+ دلایل خوب زیادی برای هر دو ساختار ترکیب کردن و ارث بری وجود دارد.
+ قاعده کلی برای تشخیص اینکه کدا یک بهتر است، این است که اگر ذهن تان ناخودآگاه به سمت استفاده از ارث بری میرود، سعی کنید به این مساله فکر کنید که آیا ترکیب کردن مشکلم را بهتر حل می کند یا نه ؟ در برخی موراد پاسخ مثبت است.
+ 
+ ممکن است برایتان سوال پیش آید، که: چه موقع باید از ارث بری استفاده کنم؟ پاسخ این است که این موضوع به مشکلی که در دست دارید بر میگردد. 
+ اما یک لیست خلاصه و ترتمیز از برخی مواردی که ارث بری بر ترکیب کردن ترجیح دارد را در زیر آورده ایم:
+ 
+ 1. ارث بری شما دارای ساختار رابطه ای "is-a" می باشد نه "has-a" 
+(مثلا Human->Anima و User->UserDetails)
+2. می توانید از کدهای کلاس اصلی مجددا استفاده نمایید (انسان، مانند حیوانات می تواند حرکت کند)
+3. قصد دارید با یک تغییر در کلاس اصلی، تغییری در همه کلاس های ارث برنده ایجاد نمایید. (مثلا میزان مصرف کالری بر اثر حرکت برای همه حیوانات)
 
-You might be wondering then, "when should I use inheritance?" It
-depends on your problem at hand, but this is a decent list of when inheritance
-makes more sense than composition:
-
-1. Your inheritance represents an "is-a" relationship and not a "has-a"
-   relationship (Human->Animal vs. User->UserDetails).
-2. You can reuse code from the base classes (Humans can move like all animals).
-3. You want to make global changes to derived classes by changing a base class.
-   (Change the caloric expenditure of all animals when they move).
 
 **بد:**
 
@@ -1363,14 +1373,13 @@ class Employee {
 
 ### Single Responsibility Principle (SRP)
 
-As stated in Clean Code, "There should never be more than one reason for a class
-to change". It's tempting to jam-pack a class with a lot of functionality, like
-when you can only take one suitcase on your flight. The issue with this is
-that your class won't be conceptually cohesive and it will give it many reasons
-to change. Minimizing the amount of times you need to change a class is important.
-It's important because if too much functionality is in one class and you modify
-a piece of it, it can be difficult to understand how that will affect other
-dependent modules in your codebase.
+
+همانطور که در قواعد کدنویسی تمیز گفته شده، "نباید بیش از یک دلیل برای تغییر در یک کلاس وجود داشته باشد".
+داشتن یک کلاس با کلی قابلیت بسیار وسوسه انگیز است، مثل اینکه برای پروازتان فقط یه چمدان داشته باشید. 
+مشکل این است که کلاستان از نظر ساختاری منسجم نخواهد بود و همین موضوع بسیاری دلایل برای تغییرش ایجاد خواهد کرد.
+به همین دلیل کاهش تعداد دفعاتی که نیاز است کلاستان را تغییر دهید، بسیار مهم است.
+این مساله مهم است، چراکه اگر قابلیت های متعددی در یک کلاس باشد و شما سعی کنید بخضی از آن را تغییر دهید، به سختی می تواند حدس زد، چه ماژول های وابسته ای در کدهایتان تحت تاثیر این تغییر قرار خواهند گرفت.
+
 
 **بد:**
 
@@ -1423,10 +1432,11 @@ class UserSettings {
 
 ### Open/Closed Principle (OCP)
 
-As stated by Bertrand Meyer, "software entities (classes, modules, functions,
-etc.) should be open for extension, but closed for modification." What does that
-mean though? This principle basically states that you should allow users to
-add new functionalities without changing existing code.
+همانطور که 
+Bertrand Meyer 
+اشاره می کند، موجودیت های نرم افزاری (کلاس ها، ماژول ها، توابع و غیره.) باید قابل گسترش و غیرقابل ویرایش باشند. این یعنی چی ؟ 
+این قاعده می گوید، کد شما باید اجازه افزودن قابلیت جدید بدون نیاز به تغییر در کد موجود را بدهد.
+
 
 **بد:**
 
